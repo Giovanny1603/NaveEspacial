@@ -2,7 +2,7 @@ import pygame
 from ElementoJogo import ElementoJogo
 
 class Nave(ElementoJogo):
-    def __init__(self, largura_tela, altura_tela, velocidade=6, cor=(0, 255, 100)):
+    def __init__(self, largura_tela, altura_tela, velocidade=6, cor=(25, 25, 112)):
         super().__init__(
             x=largura_tela // 2 - 20,
             y=altura_tela - 60,
