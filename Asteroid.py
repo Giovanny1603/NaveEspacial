@@ -19,10 +19,10 @@ class Asteroid(ElementoJogo):
         self.iniciar_status()
 
     def iniciar_status(self):
-        # TODO 3 Resolvido: Nascimento aleatório do asteroide
         self.rect.x = random.randint(0, self.largura_tela - self.rect.width)
         self.rect.y = random.randint(-150, -50)
         self.velocidade = random.randint(3, 7)
+        self.vida = 3 
 
     def mover(self):
         self.rect.y += self.velocidade
@@ -30,4 +30,12 @@ class Asteroid(ElementoJogo):
             self.iniciar_status()
 
     def desenhar(self, tela):
+        # Controle de cor baseado na vida restante
+        if self.vida == 3:
+            self.cor = (150, 150, 150) # Cinza (Intacto)
+        elif self.vida == 2:
+            self.cor = (255, 165, 0)   # Laranja (Danificado)
+        elif self.vida == 1:
+            self.cor = (255, 0, 0)     # Vermelho (Crítico)
+            
         pygame.draw.circle(tela, self.cor, self.rect.center, self.raio)
