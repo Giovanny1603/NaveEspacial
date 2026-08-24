@@ -29,10 +29,17 @@ class Jogo:
         # A) Tiro vs Asteroide
         for tiro in reversed(self.nave.tiros):
             if tiro.colliderect(self.asteroide.rect):
-                self.nave.tiros.remove(tiro)
-                self.asteroide.iniciar_status()
-                self.pontos += 1
-                break 
+                self.nave.tiros.remove(tiro) # A bala sempre some ao bater
+                
+                self.asteroide.vida -= 1     
+                
+                # Só reseta e dá ponto se a vida chegar a zero
+                if self.asteroide.vida <= 0:
+                    self.asteroide.iniciar_status() 
+                    self.pontos += 1
+                    print(f"Asteroide destruído! Pontos: {self.pontos}")
+                
+                break
         
         # B) Asteroide vs Nave
         if self.nave.rect.colliderect(self.asteroide.rect):
